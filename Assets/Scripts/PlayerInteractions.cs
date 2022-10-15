@@ -50,4 +50,12 @@ public class PlayerInteractions : MonoBehaviour
         _instance = this;
         onHPChanged += TakeDamage;
     }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            
+        }
+    }
 }
