@@ -14,6 +14,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private GameObject simpleBullet;
 
     [SerializeField] private GameObject fiveSimpleBullets;
+    [SerializeField] private GameObject fiveRealSimpleBullets;
     
     private Dictionary<BulletType, GameObject> bulletToPrefabTable;
     private Dictionary<string, GameObject> bulletStringToPrefabTable;
@@ -89,7 +90,7 @@ public class Boss : MonoBehaviour
             {
                 val -= angularIncrement;
             }
-            Instantiate(fiveSimpleBullets, transform.position, Quaternion.Euler(0.0f, 0.0f, val));
+            Instantiate(fiveRealSimpleBullets, transform.position, Quaternion.Euler(0.0f, 0.0f, val));
             yield return new WaitForSeconds(duration / numberOfShots);
         }
     }
