@@ -28,7 +28,6 @@ public class SimpleProjectile : Projectile
     private void Start()
     {
         Destroy(gameObject, lifetime);
-        SetInitalRotation();
     }
     
 }

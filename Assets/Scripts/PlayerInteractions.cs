@@ -50,12 +50,4 @@ public class PlayerInteractions : MonoBehaviour
         _instance = this;
         onHPChanged += TakeDamage;
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            PlayerHP -= 1;
-        }
-    }
 }
