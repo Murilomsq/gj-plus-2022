@@ -46,6 +46,13 @@ public class Boss : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90.0f;
         Instantiate(bulletToPrefabTable[type], transform.position, Quaternion.Euler(0.0f, 0.0f, angle));
     }
+    public void ShootBulletAtPlayerAtSpeed(float speed)
+    {
+        Vector3 dir = transform.position - PlayerInteractions.Instance.transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90.0f;
+        var obj = Instantiate(bulletToPrefabTable[BulletType.Simple], transform.position, Quaternion.Euler(0.0f, 0.0f, angle));
+        obj.GetComponent<Projectile>().speed = speed;
+    }
     public void ShootBulletAtPlayer(string type)
     {
         Debug.Log("here");

@@ -13,9 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private bool jump = false;
     private void Update()
     {
+        if (!PlayerInteractions.Instance.IsControllable)
+            return;
+        
         horizontalMove = Input.GetAxis("Horizontal") * speed;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             jump = true;
         }
