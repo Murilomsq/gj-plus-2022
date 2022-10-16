@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     [SerializeField] private CharacterController2D controller;
 
     [SerializeField] private float speed = 50.0f;
@@ -17,12 +18,18 @@ public class PlayerMovement : MonoBehaviour
             return;
         
         horizontalMove = Input.GetAxis("Horizontal") * speed;
-
+        
         if (Input.GetKeyDown(KeyCode.W))
         {
             jump = true;
+            animator.SetBool("isJumping", true);
         }
+        
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+        animator.SetBool("isDashing", PlayerInteractions.Instance.isDamageInv);
     }
+
+    public void OnLanding() => animator.SetBool("isJumping", false);
 
     private void FixedUpdate()
     {

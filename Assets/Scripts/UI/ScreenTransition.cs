@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScreenTransition : MonoBehaviour
 {
+
     [SerializeField] private GameObject blackScreen;
     [SerializeField] private Image blackScreenImage;
     
@@ -26,7 +28,10 @@ public class ScreenTransition : MonoBehaviour
 
     private void Start()
     {
-        FadeOut(3.0f);
+        if (GameManager.Instance.state == GameManager.GameState.Boss)
+        {
+            FadeOut(2.0f);
+        }
     }
 
     public void FadeIn(float time)

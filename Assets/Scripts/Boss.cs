@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public enum BulletType
@@ -15,22 +16,15 @@ public class Boss : MonoBehaviour
 
     [SerializeField] private GameObject fiveSimpleBullets;
     [SerializeField] private GameObject fiveRealSimpleBullets;
+
+    [SerializeField] private float bossShakeAmplitude;
+    [SerializeField] private float bossShakeFrequency;
     
     private Dictionary<BulletType, GameObject> bulletToPrefabTable;
     private Dictionary<string, GameObject> bulletStringToPrefabTable;
-    private void Awake()
-    {
-        bulletToPrefabTable = new Dictionary<BulletType, GameObject>()
-        {
-            {BulletType.Wiggle, wiggleBullet},
-            {BulletType.Simple, simpleBullet}
-        };
-        bulletStringToPrefabTable = new Dictionary<string, GameObject>()
-        {
-            {"Wiggle", wiggleBullet},
-            {"Simple", simpleBullet}
-        };
-    }
+
+    private Vector3 startingPos;
+    
     
     public void ShootBullet(BulletType type, float angle)
     {
@@ -95,4 +89,23 @@ public class Boss : MonoBehaviour
         }
     }
     
+    private void Awake()
+    {
+        bulletToPrefabTable = new Dictionary<BulletType, GameObject>()
+        {
+            {BulletType.Wiggle, wiggleBullet},
+            {BulletType.Simple, simpleBullet}
+        };
+        bulletStringToPrefabTable = new Dictionary<string, GameObject>()
+        {
+            {"Wiggle", wiggleBullet},
+            {"Simple", simpleBullet}
+        };
+        startingPos = transform.position;
+    }
+
+    private void Update()
+    {
+        transform.position = new Vector3((float)(startingPos.x + bossShakeAmplitude * Math.Cos(Time.time * bossShakeFrequency)), startingPos.y, startingPos.z);
+    }
 }
